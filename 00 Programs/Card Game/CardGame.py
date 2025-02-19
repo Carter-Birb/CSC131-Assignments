@@ -1,0 +1,241 @@
+#####################################################################
+# author: Carter Landry
+# date: 2/13/25
+# description: This is a Card Game containing the Card, Deck, and Game classes.
+#####################################################################
+# import the shuffle and seed functions from the random library.
+import random
+# set the seed
+random.seed(9876543210)
+# define the possible suits that the cards can have using a list.
+POSSIBLESUITS = ["clubs", "diamonds", "hearts", "spades"]
+
+# Card class
+class Card:
+    
+    # Constructor for Card
+    def __init__(self, number:int, suit:str):
+        self.number = number
+        self.suit = suit
+    
+    # Getter for number
+    @property
+    def number(self):
+        return self._number
+    
+    # Setter for number
+    @number.setter
+    def number(self, val):
+        if val in range(2, 11):
+            self._number = val
+        else:
+            self._number = 2
+    
+    # Getter for suit
+    @property
+    def suit(self):
+        return self._suit
+    
+    # Setter for suit
+    @suit.setter
+    def suit(self, val):
+        if val.lower() in POSSIBLESUITS:
+            self._suit = val.lower()
+        else:
+            self._suit = "clubs"
+    
+    # Operation overloader for ">"
+    def __gt__(self, other):
+        if self.number > other.number:
+            return True
+        else:
+            return False
+    
+    # Operation overloader for "<"
+    def __lt__(self, other):
+        if self.number < other.number:
+            return True
+        else:
+            return False
+    
+    # Operation overloader for "="
+    def __eq__(self, other):
+        if self.number == other.number:
+            return True
+        else:
+            return False
+    
+    # Str method for Card
+    def __str__(self):
+        return f"{self.number} of {self.suit}"
+    
+    # Hash method for Card
+    def __hash__(self):
+        return hash((self.number, self.suit))
+
+
+# Deck class
+class Deck:
+    
+    # Constructor for Deck
+    def __init__(self):
+        # Generates a list of all possible cards with all possible suits
+        self.cards = [Card(number, suit) for suit in POSSIBLESUITS for number in range (2, 11)]
+
+    # Getter for cards
+    @property
+    def cards(self):
+        return self._cards
+    
+    # Setter for cards
+    @cards.setter
+    def cards(self, val):
+        self._cards = val
+    
+    # Shuffle function
+    def shuffle(self):
+        """
+        shuffles the cards in the deck.
+        """
+        random.shuffle(self.cards)
+    
+    # Size function
+    def size(self):
+        """
+        Returns the size of the deck
+        """
+        return len(self.cards)
+    
+    # Draw function
+    def draw(self):
+        """
+        Draws the first card in the deck. (Index 0)
+        """
+        if len(self.cards) == 0:
+            return None
+        else:
+            drawncard = self.cards[0]
+            self.cards.pop(0)
+            return drawncard
+    
+    # Str method for Deck
+    def __str__(self):
+        if len(self.cards) == 0:
+            return "[--empty--]"
+        else:
+            # Converts the Card objects stored in memory to strings
+            return ", ".join(str(card) for card in self.cards)
+
+# Game class
+class Game:
+    
+    # Constructor for Game
+    def __init__(self):
+        self.deck:list[Card] = Deck()
+        self.deck.shuffle()
+        self.deck.shuffle()
+    
+    # getter for deck
+    @property
+    def deck(self):
+        return self._deck
+    
+    # Setter for deck
+    @deck.setter
+    def deck(self, val):
+        self._deck = val
+    
+    # Start function
+    def start(self):
+        """
+        Begins the game by prompting the user to start.
+        """
+        print("-"*40)
+        print("Welcome to a basic game.")
+        print("You and this program will take turns picking cards.")
+        print("The one with the highest value card wins")
+        print("-"*40)
+        userinput = input("Are you ready to start?")
+        userinput.lower()
+        if userinput in ["y", "yes"]:
+            self.play()
+        elif userinput in ["n", "no"]:
+            self.end()
+            # Prevents the user from entering anything other than "y" or "n" (or anything else related)
+        else:
+            print("Please enter either \"y\" or \"n\". The game will now terminate.")
+            exit()
+    
+    # End function
+    def end(self):
+        """
+        Prints the remaining cards in the deck, then terminates the program.
+        """
+        print("Sorry to see you go.")
+        print("--------Remaining Cards--------")
+        print(f"{self.deck}")
+        # Terminates the program
+        exit()
+    
+    # Play function
+    def play(self):
+        """
+        Contains the logic behind the card game.
+        """
+        usercard = self.deck.draw()
+        computercard = self.deck.draw()
+        # Will only execute if the user has a higher value card
+        if usercard > computercard:
+            print(f"You picked {usercard}, and I picked {computercard}")
+            print("YOU WIN")
+            
+            # Checks if the deck size is below 2. If it is, the end() function is called
+            if self.deck.size() < 2:
+                print("Not enough cards to play")
+                self.end()
+            
+            # Prompts the user for another round
+            userinput = input("Would you like to play again?")
+            if userinput in ["y", "yes", "ye"]:
+                self.play()
+            elif userinput in ["n", "no"]:
+                self.end()
+                
+        # Will only execute is the computer has a higher value card
+        elif computercard > usercard:
+            print(f"You picked {usercard}, and I picked {computercard}")
+            print("I WIN")
+            
+            # Checks if the deck size is below 2. If it is, the end() function is called
+            if self.deck.size() < 2:
+                print("Not enough cards to play")
+                self.end()
+            
+            # Prompts the user for another round
+            userinput = input("Would you like to play again?")
+            if userinput in ["y", "yes", "ye"]:
+                self.play()
+            elif userinput in ["n", "no"]:
+                self.end()
+                
+        # Wil only execute of both cards are the same value
+        elif usercard == computercard:
+            print(f"You picked {usercard}, and I picked {computercard}")
+            print("TIE")
+            
+            # Checks if the deck size is below 2. If it is, the end() function is called
+            if self.deck.size() < 2:
+                print("Not enough cards to play")
+                self.end()
+
+            # Prompts the user for another round
+            userinput = input("Would you like to play again?")
+            if userinput in ["y", "yes", "ye"]:
+                self.play()
+            elif userinput in ["n", "no"]:
+                self.end()
+
+
+if __name__ == "__main__":
+    g1=Game()
+    g1.start()
