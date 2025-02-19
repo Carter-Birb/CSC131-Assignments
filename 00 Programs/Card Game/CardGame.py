@@ -4,7 +4,9 @@
 # description: This is a Card Game containing the Card, Deck, and Game classes.
 #####################################################################
 # import the shuffle and seed functions from the random library.
+from random import randint
 import random
+import os
 # set the seed
 random.seed(9876543210)
 # define the possible suits that the cards can have using a list.
@@ -39,6 +41,7 @@ class Card:
     # Setter for suit
     @suit.setter
     def suit(self, val):
+        val = str(val)
         if val.lower() in POSSIBLESUITS:
             self._suit = val.lower()
         else:
@@ -74,13 +77,40 @@ class Card:
         return hash((self.number, self.suit))
 
 
+# PictureCard class
+class PictureCard(Card):
+    
+    # Constructor for PictureCard
+    def __init__(self, number:int, suit:str):
+        super().__init__(number, suit)
+        self.imagefile = f"{self.number}_of_{self.suit}.png"
+    
+    # Getter for imagefile
+    @property
+    def imagefile(self):
+        return self._imagefile
+    
+    # Setter for imagefile
+    @imagefile.setter
+    def imagefile(self, val:str):
+        
+        # Generates the file path
+        filepath = os.path.join("images", val)
+        
+        # Checks if the imagefile is actually a file within the "images" folder
+        if os.path.isfile(filepath):
+            self._imagefile = val
+        else:
+            self._imagefile = "default.png"
+
+
 # Deck class
 class Deck:
     
     # Constructor for Deck
     def __init__(self):
         # Generates a list of all possible cards with all possible suits
-        self.cards = [Card(number, suit) for suit in POSSIBLESUITS for number in range (2, 11)]
+        self.cards = [PictureCard(number, suit) for suit in POSSIBLESUITS for number in range (2, 11)]
 
     # Getter for cards
     @property
@@ -125,6 +155,7 @@ class Deck:
         else:
             # Converts the Card objects stored in memory to strings
             return ", ".join(str(card) for card in self.cards)
+
 
 # Game class
 class Game:
@@ -237,5 +268,5 @@ class Game:
 
 
 if __name__ == "__main__":
-    g1=Game()
-    g1.start()
+    cardimage = PictureCard(3, "spades")
+    
