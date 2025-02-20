@@ -1,7 +1,7 @@
 from tkinter import *
-import CardGame
+import Game_backend
 
-WIDTH = 600
+WIDTH = 700
 HEIGHT = 600
 BGLABEL = "SteelBlue4"
 BGBUTTON = "midnight blue"
@@ -25,7 +25,7 @@ class MainGUI(Frame):
             fg="white",
             font=(FONT, 10)
             )
-        self.L1.grid(row=0, column=0, sticky=NW, padx=5, pady=5)
+        self.L1.grid(row=0, column=0, columnspan=2, sticky=NW, padx=5, pady=5)
         
         self.L2 = Label(
             self,
@@ -35,7 +35,7 @@ class MainGUI(Frame):
             fg="white",
             font=(FONT, 10)
         )
-        self.L2.grid(row=0, column=10, sticky=NE, padx=5, pady=5)
+        self.L2.grid(row=0, column=50, sticky=NE, padx=5, pady=5)
         
         self.Play = Button(
             self,
@@ -71,19 +71,20 @@ class MainGUI(Frame):
             activebackground="light gray",
             command=lambda: self.process("Quit")
         )
-        self.Quit.grid(row=10, column=10, sticky=SE, padx=5, pady=5)
+        self.Quit.grid(row=10, column=50, sticky=SE, padx=5, pady=5)
         
         
         for row in range(10):
             Grid.rowconfigure(self, row, weight=1)
-        for col in range(10):
+        for col in range(50):
             Grid.columnconfigure(self, col, weight=1)
         
         self.pack(fill=BOTH, expand=True)
     
     
     def process(self, button):
-        pass
+        if button == "Play":
+            pass
 
 
 if __name__ == "__main__":
