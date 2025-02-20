@@ -12,7 +12,7 @@ TESTING = False     # Change this to False if you want to proceed to the
 ########## DO NOT CHANGE ANYTHING BELOW THIS LINE ##########
 
 # import the CardGame file and all its classes.
-from CardGame import *
+from Game_backend import *
 import random
 
 

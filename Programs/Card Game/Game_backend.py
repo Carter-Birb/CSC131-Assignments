@@ -179,21 +179,24 @@ class Game:
     # Start function
     def start(self):
         """
-        Begins the game by prompting the user to start.
+        Initializes the game.
+        Normally called when the game first begins, or when the "Restart" button is clicked.
         """
         pass
     
     # End function
     def end(self):
         """
-        Prints the remaining cards in the deck, then terminates the program.
+        Terminates the game.
+        Normally called when the window is closed, or if the "Quit" button is clicked.
         """
         pass
     
     # Play function
     def play(self):
         """
-        Contains the logic behind the card game.
+        Contains the logic of the game.
+        Normally called after the start() function is complete, or when the "Play" button is clicked.
         """
         pass
 

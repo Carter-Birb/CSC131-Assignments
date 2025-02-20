@@ -1,8 +1,9 @@
 from tkinter import *
+from PIL import Image, ImageTk
 import Game_backend
 
-WIDTH = 700
-HEIGHT = 600
+WIDTH = 1000
+HEIGHT = 750
 BGLABEL = "SteelBlue4"
 BGBUTTON = "midnight blue"
 FONT = "Outfit"
@@ -23,12 +24,12 @@ class MainGUI(Frame):
         self.canvas = Canvas(
             self,
             height=450,
-            width=250,
+            width=2,
             bg=BGLABEL,
             highlightthickness=0
         )
         self.canvas.grid(row=5, column=25, sticky=NSEW, padx=5, pady=5)
-        self.canvas.create_line(125, -1000, 125, 1000, fill="gray", width=2)
+        self.canvas.create_line(50, -1000, 50, 1000, fill="gray", width=2)
         
         # Creates the "Computer Picked" Label
         self.L1 = Label(
@@ -106,6 +107,20 @@ class MainGUI(Frame):
         self.status.grid(row=9, column=25, sticky=NSEW, padx=5, pady=5)
         
         
+        self.defaultimage = PhotoImage(file="images/default.png")
+        self.resizedimage = self.defaultimage.subsample(1)
+        self.computerimage = Label(
+            self,
+            image=self.resizedimage,
+            )
+        self.computerimage.grid(row=5, column=0, columnspan=20, sticky=E, padx=5, pady=5)
+        
+        self.userimage = Label(
+            self,
+            image=self.resizedimage,
+        )
+        self.userimage.grid(row=5, column=31, columnspan=20, sticky=W, padx=5, pady=5)
+
         # Creates the grid used for placing Labels and Buttons
         for row in range(10):
             Grid.rowconfigure(self, row, weight=1)
@@ -116,14 +131,23 @@ class MainGUI(Frame):
     
     def process(self, button):
         if button == "Play":
-            pass
+            Game_backend.Game.play()
+        
+        elif button == "Restart":
+            Game_backend.Game.start()
+        
+        elif button == "Quit":
+            Game_backend.Game.end()
 
 
-if __name__ == "__main__":#
+def main():
     window = Tk()
     window.title("Awesome Card Game")
     window.geometry(f"{WIDTH}x{HEIGHT}")
     window.resizable(0, 0)
     
-    p = MainGUI(window)
+    _ = MainGUI(window)
     window.mainloop()
+
+if __name__ == "__main__":
+    main()
