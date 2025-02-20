@@ -2,8 +2,8 @@ from tkinter import *
 from PIL import Image, ImageTk
 import Game_backend
 
-WIDTH = 1000
-HEIGHT = 750
+WIDTH = 1200
+HEIGHT = 850
 BGLABEL = "SteelBlue4"
 BGBUTTON = "midnight blue"
 FONT = "Outfit"
@@ -104,20 +104,25 @@ class MainGUI(Frame):
             fg="white",
             font=(FONT, 15)
         )
-        self.status.grid(row=9, column=25, sticky=NSEW, padx=5, pady=5)
+        self.status.grid(row=8, column=25, sticky=NSEW, padx=5, pady=5)
         
         
         self.defaultimage = PhotoImage(file="images/default.png")
-        self.resizedimage = self.defaultimage.subsample(1)
         self.computerimage = Label(
             self,
-            image=self.resizedimage,
+            image=self.defaultimage,
+            width=500,
+            height=726,
+            bg=BGLABEL
             )
         self.computerimage.grid(row=5, column=0, columnspan=20, sticky=E, padx=5, pady=5)
         
         self.userimage = Label(
             self,
-            image=self.resizedimage,
+            image=self.defaultimage,
+            width=500,
+            height=726,
+            bg=BGLABEL
         )
         self.userimage.grid(row=5, column=31, columnspan=20, sticky=W, padx=5, pady=5)
 
