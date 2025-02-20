@@ -23,7 +23,7 @@ class MainGUI(Frame):
         # Creates the center line
         self.canvas = Canvas(
             self,
-            height=450,
+            height=726,
             width=2,
             bg=BGLABEL,
             highlightthickness=0
@@ -106,20 +106,25 @@ class MainGUI(Frame):
         )
         self.status.grid(row=8, column=25, sticky=NSEW, padx=5, pady=5)
         
-        
+        # Establishes the default image to show when the GUI begins
         self.defaultimage = PhotoImage(file="images/default.png")
+        
+        # Creates a variable to store the current image displayed
+        self.computercardimage = self.defaultimage
         self.computerimage = Label(
             self,
-            image=self.defaultimage,
+            image=self.computercardimage,
             width=500,
             height=726,
             bg=BGLABEL
             )
         self.computerimage.grid(row=5, column=0, columnspan=20, sticky=E, padx=5, pady=5)
         
+        # Creates a variable to store the current image displayed
+        self.usercardimage = self.defaultimage
         self.userimage = Label(
             self,
-            image=self.defaultimage,
+            image=self.usercardimage,
             width=500,
             height=726,
             bg=BGLABEL
