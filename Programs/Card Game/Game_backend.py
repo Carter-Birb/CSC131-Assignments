@@ -181,91 +181,21 @@ class Game:
         """
         Begins the game by prompting the user to start.
         """
-        print("-"*40)
-        print("Welcome to a basic game.")
-        print("You and this program will take turns picking cards.")
-        print("The one with the highest value card wins")
-        print("-"*40)
-        userinput = input("Are you ready to start?")
-        userinput.lower()
-        if userinput in ["y", "yes"]:
-            self.play()
-        elif userinput in ["n", "no"]:
-            self.end()
-            # Prevents the user from entering anything other than "y" or "n" (or anything else related)
-        else:
-            print("Please enter either \"y\" or \"n\". The game will now terminate.")
-            exit()
+        pass
     
     # End function
     def end(self):
         """
         Prints the remaining cards in the deck, then terminates the program.
         """
-        print("Sorry to see you go.")
-        print("--------Remaining Cards--------")
-        print(f"{self.deck}")
-        # Terminates the program
-        exit()
+        pass
     
     # Play function
     def play(self):
         """
         Contains the logic behind the card game.
         """
-        usercard = self.deck.draw()
-        computercard = self.deck.draw()
-        # Will only execute if the user has a higher value card
-        if usercard > computercard:
-            print(f"You picked {usercard}, and I picked {computercard}")
-            print("YOU WIN")
-            
-            # Checks if the deck size is below 2. If it is, the end() function is called
-            if self.deck.size() < 2:
-                print("Not enough cards to play")
-                self.end()
-            
-            # Prompts the user for another round
-            userinput = input("Would you like to play again?")
-            if userinput in ["y", "yes", "ye"]:
-                self.play()
-            elif userinput in ["n", "no"]:
-                self.end()
-                
-        # Will only execute is the computer has a higher value card
-        elif computercard > usercard:
-            print(f"You picked {usercard}, and I picked {computercard}")
-            print("I WIN")
-            
-            # Checks if the deck size is below 2. If it is, the end() function is called
-            if self.deck.size() < 2:
-                print("Not enough cards to play")
-                self.end()
-            
-            # Prompts the user for another round
-            userinput = input("Would you like to play again?")
-            if userinput in ["y", "yes", "ye"]:
-                self.play()
-            elif userinput in ["n", "no"]:
-                self.end()
-                
-        # Wil only execute of both cards are the same value
-        elif usercard == computercard:
-            print(f"You picked {usercard}, and I picked {computercard}")
-            print("TIE")
-            
-            # Checks if the deck size is below 2. If it is, the end() function is called
-            if self.deck.size() < 2:
-                print("Not enough cards to play")
-                self.end()
-
-            # Prompts the user for another round
-            userinput = input("Would you like to play again?")
-            if userinput in ["y", "yes", "ye"]:
-                self.play()
-            elif userinput in ["n", "no"]:
-                self.end()
-
+        pass
 
 if __name__ == "__main__":
     pass
