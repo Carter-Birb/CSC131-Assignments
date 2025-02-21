@@ -1,6 +1,6 @@
 from tkinter import *
 from PIL import Image, ImageTk
-import Game_backend
+import backend
 
 WIDTH = 1200
 HEIGHT = 850
@@ -13,6 +13,8 @@ class MainGUI(Frame):
     
     def __init__(self, parent):
         super().__init__(parent, bg=BGLABEL)
+        self.game = backend.Game()
+        self.game.start()
         self.setupGUI()
     
     
@@ -20,6 +22,12 @@ class MainGUI(Frame):
         """
         Creates the GUI for the Card Game
         """
+        # Creates the grid used for placing Labels and Buttons
+        for row in range(10):
+            Grid.rowconfigure(self, row, weight=1)
+        for col in range(50):
+            Grid.columnconfigure(self, col, weight=1)
+        
         # Creates the center line
         self.canvas = Canvas(
             self,
@@ -28,8 +36,8 @@ class MainGUI(Frame):
             bg=BGLABEL,
             highlightthickness=0
         )
-        self.canvas.grid(row=5, column=25, sticky=NSEW, padx=5, pady=5)
-        self.canvas.create_line(50, -1000, 50, 1000, fill="gray", width=2)
+        self.canvas.grid(row=5, column=0, columnspan=51, sticky=NSEW, padx=5, pady=5)
+        self.canvas.create_line(596, -1000, 596, 1000, fill="gray", width=2)
         
         # Creates the "Computer Picked" Label
         self.L1 = Label(
@@ -95,7 +103,7 @@ class MainGUI(Frame):
         
         # The labels following this comment are meant to change based on the state of the game #
         
-        # Creates the Label that displays the winner of each round
+        # Creates the Label that displays information about the current game state or winner
         self.status = Label(
             self,
             text="Who wins?",
@@ -104,7 +112,7 @@ class MainGUI(Frame):
             fg="white",
             font=(FONT, 15)
         )
-        self.status.grid(row=8, column=25, sticky=NSEW, padx=5, pady=5)
+        self.status.grid(row=8, column=0, columnspan=51, sticky=NSEW, padx=5, pady=5)
         
         # Establishes the default image to show when the GUI begins
         self.defaultimage = PhotoImage(file="images/default.png")
@@ -131,23 +139,47 @@ class MainGUI(Frame):
         )
         self.userimage.grid(row=5, column=31, columnspan=20, sticky=W, padx=5, pady=5)
 
-        # Creates the grid used for placing Labels and Buttons
-        for row in range(10):
-            Grid.rowconfigure(self, row, weight=1)
-        for col in range(50):
-            Grid.columnconfigure(self, col, weight=1)
         self.pack(fill=BOTH, expand=True)
     
     
     def process(self, button):
         if button == "Play":
-            Game_backend.Game.play()
+            usercard, computercard, result = self.game.play()
+            
+            if usercard and computercard:
+                
+                self.status.config(text=result)
+
+                usercardimage = PhotoImage(file=f"images/{usercard}.png")
+                computercardimage = PhotoImage(file=f"images/{computercard}.png")
+                
+                self.userimage.config(image=usercardimage)
+                self.computerimage.config(image=computercardimage)
+                    
+                self.userimage.image = usercardimage
+                self.computerimage.image = computercardimage
+                
+
+            else:
+                self.status.config(text="Game Over. Restart to play again.")
+        
         
         elif button == "Restart":
-            Game_backend.Game.start()
+            result = self.game.start()
+            userdefault = PhotoImage(file="images/default.png")
+            computerdefault = PhotoImage(file="images/default.png")
+            
+            self.userimage.config(image=userdefault)
+            self.computerimage.config(image=computerdefault)
+            
+            self.userimage.image = userdefault
+            self.computerimage.image = computerdefault
+            
+            self.status.config(text=result)
+        
         
         elif button == "Quit":
-            Game_backend.Game.end()
+            self.game.end()
 
 
 def main():

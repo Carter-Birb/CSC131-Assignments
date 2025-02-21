@@ -70,7 +70,7 @@ class Card:
     
     # Str method for Card
     def __str__(self):
-        return f"{self.number} of {self.suit}"
+        return f"{self.number}_of_{self.suit}"
     
     # Hash method for Card
     def __hash__(self):
@@ -162,10 +162,7 @@ class Game:
     
     # Constructor for Game
     def __init__(self):
-        self.deck:list[Card] = Deck()
-        self.deck.shuffle()
-        self.deck.shuffle()
-    
+        self.start()
     # getter for deck
     @property
     def deck(self):
@@ -182,23 +179,42 @@ class Game:
         Initializes the game.
         Normally called when the game first begins, or when the "Restart" button is clicked.
         """
-        pass
+        self.deck:list[Card] = Deck()
+        self.deck.shuffle()
+        self.deck.shuffle()
+        result = "Who wins?"
+        return result
     
     # End function
     def end(self):
         """
         Terminates the game.
-        Normally called when the window is closed, or if the "Quit" button is clicked.
+        Called when the "Quit" button is clicked.
         """
-        pass
+        exit()
     
     # Play function
     def play(self):
         """
         Contains the logic of the game.
-        Normally called after the start() function is complete, or when the "Play" button is clicked.
+        Called when the "Play" button is clicked.
         """
-        pass
+        usercard = self.deck.draw()
+        computercard = self.deck.draw()
+        
+        if not usercard or not computercard:
+            return None, None, "The deck is empty!"
+        
+        elif usercard > computercard:
+                result = "You win"
+            
+        elif computercard > usercard:
+                result = "I win"
+            
+        else:
+                result = "Draw"
+
+        return usercard, computercard, result
 
 if __name__ == "__main__":
     pass
