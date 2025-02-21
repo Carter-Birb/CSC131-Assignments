@@ -72,7 +72,7 @@ class MainGUI(Frame):
             activebackground="light gray",
             command=lambda: self.process("Play")
         )
-        self.Play.grid(row=10, column=0, sticky=SW, padx=5, pady=5)
+        self.Play.grid(row=10, column=0, sticky=W, padx=5, pady=5)
         
         # Creates the "Restart" Button and activates the process when clicked
         self.Restart = Button(
@@ -85,7 +85,7 @@ class MainGUI(Frame):
             activebackground="light gray",
             command=lambda: self.process("Restart")
         )
-        self.Restart.grid(row=10, column=1, sticky=SW, padx=5, pady=5)
+        self.Restart.grid(row=10, column=1, sticky=W, padx=5, pady=5)
         
         # Creates the "Quit" Button and activates the process when clicked
         self.Quit = Button(
@@ -98,7 +98,7 @@ class MainGUI(Frame):
             activebackground="light gray",
             command=lambda: self.process("Quit")
         )
-        self.Quit.grid(row=10, column=50, sticky=SE, padx=5, pady=5)
+        self.Quit.grid(row=10, column=50, sticky=E, padx=5, pady=5)
         
         
         # The labels following this comment are meant to change based on the state of the game #
