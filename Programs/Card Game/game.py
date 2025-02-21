@@ -36,7 +36,7 @@ class MainGUI(Frame):
             bg=BGLABEL,
             highlightthickness=0
         )
-        self.canvas.grid(row=0, rowspan=8, column=25, sticky=NSEW, padx=5, pady=5)
+        self.canvas.grid(row=2, rowspan=6, column=25, sticky=NSEW, padx=5, pady=5)
         self.canvas.create_line(2, -1000, 2, 1000, fill="gray", width=2)
         
         # Creates the "Computer Picked" Label
