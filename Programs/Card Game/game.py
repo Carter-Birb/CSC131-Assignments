@@ -2,8 +2,8 @@ from tkinter import *
 from PIL import Image, ImageTk
 import backend
 
-WIDTH = 1200
-HEIGHT = 850
+WIDTH = 750
+HEIGHT = 500
 BGLABEL = "SteelBlue4"
 BGBUTTON = "midnight blue"
 FONT = "Outfit"
@@ -31,13 +31,13 @@ class MainGUI(Frame):
         # Creates the center line
         self.canvas = Canvas(
             self,
-            height=726,
-            width=2,
+            height=400,
+            width=3,
             bg=BGLABEL,
             highlightthickness=0
         )
-        self.canvas.grid(row=5, column=0, columnspan=51, sticky=NSEW, padx=5, pady=5)
-        self.canvas.create_line(596, -1000, 596, 1000, fill="gray", width=2)
+        self.canvas.grid(row=0, rowspan=8, column=25, sticky=NSEW, padx=5, pady=5)
+        self.canvas.create_line(2, -1000, 2, 1000, fill="gray", width=2)
         
         # Creates the "Computer Picked" Label
         self.L1 = Label(
@@ -118,23 +118,23 @@ class MainGUI(Frame):
         self.defaultimage = PhotoImage(file="images/default.png")
         
         # Creates a variable to store the current image displayed
-        self.computercardimage = self.defaultimage
+        self.computercardimage = self.defaultimage.subsample(2)
         self.computerimage = Label(
             self,
             image=self.computercardimage,
-            width=500,
-            height=726,
+            width=250,
+            height=363,
             bg=BGLABEL
             )
         self.computerimage.grid(row=5, column=0, columnspan=20, sticky=E, padx=5, pady=5)
         
         # Creates a variable to store the current image displayed
-        self.usercardimage = self.defaultimage
+        self.usercardimage = self.defaultimage.subsample(2)
         self.userimage = Label(
             self,
             image=self.usercardimage,
-            width=500,
-            height=726,
+            width=250,
+            height=363,
             bg=BGLABEL
         )
         self.userimage.grid(row=5, column=31, columnspan=20, sticky=W, padx=5, pady=5)
@@ -150,8 +150,8 @@ class MainGUI(Frame):
                 
                 self.status.config(text=result)
 
-                usercardimage = PhotoImage(file=f"images/{usercard}.png")
-                computercardimage = PhotoImage(file=f"images/{computercard}.png")
+                usercardimage = PhotoImage(file=f"images/{usercard}.png").subsample(2)
+                computercardimage = PhotoImage(file=f"images/{computercard}.png").subsample(2)
                 
                 self.userimage.config(image=usercardimage)
                 self.computerimage.config(image=computercardimage)
@@ -166,8 +166,8 @@ class MainGUI(Frame):
         
         elif button == "Restart":
             result = self.game.start()
-            userdefault = PhotoImage(file="images/default.png")
-            computerdefault = PhotoImage(file="images/default.png")
+            userdefault = PhotoImage(file="images/default.png").subsample(2)
+            computerdefault = PhotoImage(file="images/default.png").subsample(2)
             
             self.userimage.config(image=userdefault)
             self.computerimage.config(image=computerdefault)
