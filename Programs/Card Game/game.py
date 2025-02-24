@@ -1,3 +1,10 @@
+#####################################################################
+# author: Carter Landry
+# date: 2/13/25
+# description: This is a Card Game containing the MainGUI, Card, PictureCard, Deck, and Game classes
+#####################################################################
+
+
 from tkinter import *
 from PIL import Image, ImageTk
 import backend
@@ -143,15 +150,20 @@ class MainGUI(Frame):
     
     
     def process(self, button):
-        
+        """
+        Called when buttons on the window are clicked.
+        LAMBDA
+        """
         # If the play button is clicked, the images are updated to the card drawn, and the winner status is updated based on the value of the cards drawn
         if button == "Play":
             usercard, computercard, result = self.game.play()
             
             if usercard and computercard:
                 
+                # Updates the status text to display the winner
                 self.status.config(text=result)
 
+                # Updates the images
                 usercardimage = PhotoImage(file=f"images/{usercard}.png").subsample(2)
                 computercardimage = PhotoImage(file=f"images/{computercard}.png").subsample(2)
                 
@@ -171,12 +183,14 @@ class MainGUI(Frame):
             userdefault = PhotoImage(file="images/default.png").subsample(2)
             computerdefault = PhotoImage(file="images/default.png").subsample(2)
             
+            # Updates the images to display the default cards
             self.userimage.config(image=userdefault)
             self.computerimage.config(image=computerdefault)
             
             self.userimage.image = userdefault
             self.computerimage.image = computerdefault
             
+            # Updates the status text to display the default text
             self.status.config(text=result)
         
         

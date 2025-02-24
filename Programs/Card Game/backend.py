@@ -1,8 +1,10 @@
 #####################################################################
 # author: Carter Landry
 # date: 2/13/25
-# description: This is a Card Game containing the Card, Deck, and Game classes.
+# description: This is a Card Game containing the MainGUI, Card, PictureCard, Deck, and Game classes
 #####################################################################
+
+
 # import the shuffle and seed functions from the random library.
 from random import randint
 import random
