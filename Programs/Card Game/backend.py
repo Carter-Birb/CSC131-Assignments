@@ -202,9 +202,11 @@ class Game:
         usercard = self.deck.draw()
         computercard = self.deck.draw()
         
+        # Occurs when the deck runs out of cards
         if not usercard or not computercard:
             return None, None, "The deck is empty!"
         
+        # The following code checks the value of the cards and executes the required outcome
         elif usercard > computercard:
                 result = "You win"
             

@@ -143,6 +143,8 @@ class MainGUI(Frame):
     
     
     def process(self, button):
+        
+        # If the play button is clicked, the images are updated to the card drawn, and the winner status is updated based on the value of the cards drawn
         if button == "Play":
             usercard, computercard, result = self.game.play()
             
@@ -163,7 +165,7 @@ class MainGUI(Frame):
             else:
                 self.status.config(text="Game Over. Restart to play again.")
         
-        
+        # If the restart button is clicked, the images get reset to the default, and the deck is reshuffled (This same process basically also happens when the window opens)
         elif button == "Restart":
             result = self.game.start()
             userdefault = PhotoImage(file="images/default.png").subsample(2)
@@ -191,5 +193,4 @@ def main():
     _ = MainGUI(window)
     window.mainloop()
 
-if __name__ == "__main__":
-    main()
+main()
