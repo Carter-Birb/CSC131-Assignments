@@ -1,3 +1,10 @@
+##########################################
+# Carter Landry
+# 2/24/25
+# This is a Flask Project that uses pokedex entries as endpoints.
+##########################################
+
+
 from flask import Flask, jsonify, request
 
 app = Flask(__name__)

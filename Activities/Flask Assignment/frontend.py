@@ -1,3 +1,10 @@
+##########################################
+# Carter Landry
+# 2/24/25
+# This is a Flask Project that uses pokedex entries as endpoints.
+##########################################
+
+
 from time import sleep
 import requests
 import backend
