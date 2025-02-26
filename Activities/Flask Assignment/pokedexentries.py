@@ -231,5 +231,167 @@ DEXENTRIES = {
         }
     },
     
-    
 }
+
+# The following entries were added by ChatGPT: #
+# Adding more Pokémon to Kanto
+DEXENTRIES["kanto"].update({
+    "pikachu": {
+        "name": "Pikachu",
+        "type": "electric",
+        "weakness": "ground",
+        "evolves": 0,
+        "description": "Pikachu stores electricity in its cheeks and releases it when threatened."
+    },
+    "eevee": {
+        "name": "Eevee",
+        "type": "normal",
+        "weakness": "fighting",
+        "evolves": 0,
+        "description": "Its unstable genetic makeup allows it to evolve into various forms."
+    }
+})
+
+# Adding more Pokémon to Johto
+DEXENTRIES["johto"].update({
+    "mareep": {
+        "name": "Mareep",
+        "type": "electric",
+        "weakness": "ground",
+        "evolves": 15,
+        "description": "Its fluffy fleece grows continuously. In the summer, the fleece is fully shed, but it grows back in a week."
+    },
+    "houndour": {
+        "name": "Houndour",
+        "type": "dark/fire",
+        "weakness": "water/rock/fighting/ground",
+        "evolves": 24,
+        "description": "Houndour communicate with each other using a variety of cries to corner prey."
+    }
+})
+
+# Adding more Pokémon to Hoenn
+DEXENTRIES["hoenn"].update({
+    "ralts": {
+        "name": "Ralts",
+        "type": "psychic/fairy",
+        "weakness": "ghost/poison/steel",
+        "evolves": 20,
+        "description": "If its trainer is in a cheerful mood, this Pokémon grows cheerful and joyful in the same way."
+    },
+    "aron": {
+        "name": "Aron",
+        "type": "steel/rock",
+        "weakness": "fighting/ground/water",
+        "evolves": 32,
+        "description": "Aron has a body of steel. It eats iron ore—occasionally causing tunnel collapses in mountain mines."
+    }
+})
+
+# Adding more Pokémon to Sinnoh
+DEXENTRIES["sinnoh"].update({
+    "riolu": {
+        "name": "Riolu",
+        "type": "fighting",
+        "weakness": "flying/psychic/fairy",
+        "evolves": 25,
+        "description": "It has the power to see emotions like joy and rage in the form of waves."
+    },
+    "shinx": {
+        "name": "Shinx",
+        "type": "electric",
+        "weakness": "ground",
+        "evolves": 15,
+        "description": "The extension and contraction of its muscles generates electricity. It glows when in trouble."
+    }
+})
+
+# Adding more Pokémon to Unova
+DEXENTRIES["unova"].update({
+    "zorua": {
+        "name": "Zorua",
+        "type": "dark",
+        "weakness": "bug/fighting/fairy",
+        "evolves": 30,
+        "description": "Zorua often transforms into other Pokémon to escape danger or trick opponents."
+    },
+    "axew": {
+        "name": "Axew",
+        "type": "dragon",
+        "weakness": "ice/dragon/fairy",
+        "evolves": 38,
+        "description": "Axew's tusks can regenerate if broken, and they grow stronger each time they regrow."
+    }
+})
+
+# Adding more Pokémon to Kalos
+DEXENTRIES["kalos"].update({
+    "helioptile": {
+        "name": "Helioptile",
+        "type": "electric/normal",
+        "weakness": "fighting/ground",
+        "evolves": 25,
+        "description": "They make their home in deserts. They can generate electricity from sunlight, allowing them to store energy."
+    },
+    "noibat": {
+        "name": "Noibat",
+        "type": "flying/dragon",
+        "weakness": "rock/ice/dragon/fairy",
+        "evolves": 48,
+        "description": "It emits ultrasonic waves as it flies. These waves can damage and stun opponents."
+    }
+})
+
+# Adding more Pokémon to Alola
+DEXENTRIES["alola"].update({
+    "rockruff": {
+        "name": "Rockruff",
+        "type": "rock",
+        "weakness": "water/grass/steel/fighting/ground",
+        "evolves": 25,
+        "description": "Rockruff has an excellent sense of smell. Once it has smelled something, it never forgets the scent."
+    },
+    "stufful": {
+        "name": "Stufful",
+        "type": "normal/fighting",
+        "weakness": "fighting/flying/psychic/fairy",
+        "evolves": 27,
+        "description": "Stufful dislikes being hugged, despite its cute appearance. It has powerful strength hidden in its small body."
+    }
+})
+
+# Adding more Pokémon to Galar
+DEXENTRIES["galar"].update({
+    "yamper": {
+        "name": "Yamper",
+        "type": "electric",
+        "weakness": "ground",
+        "evolves": 25,
+        "description": "Yamper loves to chase after things that move fast, like people on bicycles."
+    },
+    "rolycoly": {
+        "name": "Rolycoly",
+        "type": "rock",
+        "weakness": "water/grass/steel/fighting/ground",
+        "evolves": 18,
+        "description": "Rolycoly can travel smoothly over the roughest terrain. It uses the coal in its body as a source of energy."
+    }
+})
+
+# Adding more Pokémon to Paldea
+DEXENTRIES["paldea"].update({
+    "fidough": {
+        "name": "Fidough",
+        "type": "fairy",
+        "weakness": "poison/steel",
+        "evolves": 26,
+        "description": "Its breath contains yeast. It ferments things within a short time span."
+    },
+    "tinkatink": {
+        "name": "Tinkatink",
+        "type": "fairy/steel",
+        "weakness": "fire/ground",
+        "evolves": 24,
+        "description": "Tinkatink collects discarded metal to craft its own hammer, which it uses to protect itself."
+    }
+})

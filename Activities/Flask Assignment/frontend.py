@@ -124,6 +124,11 @@ class Pokedex:
         print(", ".join(self.accesspokemon(self.currentregion, self.currentpokemon).keys()))
         sleep(0.5)
     
+    def quit(self):
+        print("Now exiting the Pokedex... Goodbye!")
+        sleep(1)
+        exit()
+    
     def enterregion(self, userinput):
         """
         Executed when the user enters the region level of the program.
@@ -165,7 +170,7 @@ class Pokedex:
                 sleep(0.5)
             
             elif userinput == "quit":
-                exit()
+                self.quit()
             
             elif userinput == "help":
                 self.displayhelp()
@@ -194,7 +199,7 @@ class Pokedex:
                         break
                     
                     elif userinput == "quit":
-                        exit()
+                        self.quit()
                     
                     elif userinput == "help":
                         self.displayhelp()
@@ -222,7 +227,7 @@ class Pokedex:
                                 break
                             
                             elif userinput == "quit":
-                                exit()
+                                self.quit()
                             
                             elif userinput == "help":
                                 self.displayhelp()
