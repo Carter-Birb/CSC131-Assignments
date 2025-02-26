@@ -15,78 +15,50 @@ class Pokedex:
     API_URL = f"http://{IP_ADDR}:8000"
 
     def __init__(self):
-        # This value is used often in separate functions within the Pokedex class, therefore it is established in the constructor of the Pokedex class
-        regions_ = requests.get(url=f"{Pokedex.API_URL}/listregions")
-        self.regionsdata = regions_.json()
+        self.availableregions = self.availableregions()
         self.currentregion = None
         self.currentpokemon = None
 
 
-    def accessregiondata(self, region:str) -> dict:
+    def availableregions(self) -> dict:
+        """
+        accesses the regions that are available.
+        contains: regions
+        returns a dictionary.
+        """
+        regionsdata = requests.get(url=f"{Pokedex.API_URL}/listregions")
+        regionsdata_ = regionsdata.json()
+        return regionsdata_
+    
+    def accessregion(self, region:str) -> dict:
         """
         accesses the data contained within a region.
         contains: pokemon
         returns a dictionary.
         """
-        regionpokemon = requests.get(url=f"{Pokedex.API_URL}/{region}")
-        regiondata = regionpokemon.json()
-        return regiondata
+        regiondata = requests.get(url=f"{Pokedex.API_URL}/{region}")
+        regiondata_ = regiondata.json()
+        return regiondata_
     
-    def accesspokemondata(self, region:str, pokemon:str) -> dict:
+    def accesspokemon(self, region:str, pokemon:str) -> dict:
         """
         accesses the data contained within a pokemon.
         contains: pokemon info
         returns a dictionary.
         """
-        pokeinfo = requests.get(url=f"{Pokedex.API_URL}/{region}/{pokemon}")
-        infodata = pokeinfo.json()
-        return infodata
+        pokemondata = requests.get(url=f"{Pokedex.API_URL}/{region}/{pokemon}")
+        pokemondata_ = pokemondata.json()
+        return pokemondata_
     
-    def accessname(self, region:str, pokemon:str) -> dict:
+    def accessdata(self, region:str, pokemon:str, datatype:str) -> str:
         """
-        Accesses the data contained within a pokemon's name.
-        Returns a string.
+        accesses the datatype specified by the user.
+        contains: str linked to datatype
+        returns a string.
         """
-        pokename = requests.get(url=f"{Pokedex.API_URL}/{region}/{pokemon}/name")
-        namedata = pokename.json()
-        return namedata
-    
-    def accesstype(self, region:str, pokemon:str) -> dict:
-        """
-        Accesses the data contained within a pokemon's type.
-        Returns a string.
-        """
-        poketype = requests.get(url=f"{Pokedex.API_URL}/{region}/{pokemon}/type")
-        typedata = poketype.json()
-        return typedata
-    
-    def accessweakness(self, region:str, pokemon:str) -> dict:
-        """
-        Accesses the data contained within a pokemon's weakness.
-        Returns a string.
-        """
-        pokeweakness = requests.get(url=f"{Pokedex.API_URL}/{region}/{pokemon}/weakness")
-        weaknessdata = pokeweakness.json()
-        return weaknessdata
-    
-    def accessevolves(self, region:str, pokemon:str) -> dict:
-        """
-        Accesses the data contained within a pokemon's evolves.
-        Returns an integer.
-        """
-        pokeevolves = requests.get(url=f"{Pokedex.API_URL}/{region}/{pokemon}/evolves")
-        evolvesdata = pokeevolves.json()
-        return evolvesdata
-    
-    def accessdescription(self, region:str, pokemon:str) -> dict:
-        """
-        Accesses the data contained within a pokemon's description.
-        Returns a string.
-        """
-        pokedescription = requests.get(url=f"{Pokedex.API_URL}/{region}/{pokemon}/description")
-        descriptiondata = pokedescription.json()
-        return descriptiondata
-    
+        dexdata = requests.get(url=f"{Pokedex.API_URL}/{region}/{pokemon}/{datatype}")
+        dexdata_ = dexdata.json()
+        return dexdata_
     
     
     def regiondir(self, userinput:str) -> dict:
@@ -95,12 +67,11 @@ class Pokedex:
         """
         self.currentregion = userinput
     
-    def pokemondir(self, region:str, userinput:str) -> dict:
+    def pokemondir(self, userinput:str) -> dict:
         """
         marks the user's current pokemon location.
         """
         self.currentpokemon = userinput
-
     
     
     def startdex(self):
@@ -109,77 +80,79 @@ class Pokedex:
         This is only run once when the program starts.
         """
         print("Welcome to The Pokedex!")
-        sleep(1)
+        sleep(0.5)
         print("Valid commands are: \"<region>\" \"regions\" \"<pokemon>\" \"pokemon\" \"<data>\" \"back\" \"help\" \"quit\"")
-        sleep(1)
+        sleep(0.5)
         print("The regions this Pokedex support are:")
-        sleep(1)
-        print(", ".join(self.regionsdata.keys()))
-        sleep(1)
+        sleep(0.5)
+        print(", ".join(self.availableregions.keys()))
+        sleep(0.5)
         print("Which region would you like to explore?")
-        self.rundex()
+        self.runPokedex()
     
     def displayhelp(self):
         """
         Displays a list of the available commands.
         """
         print("Valid commands are: \"<region>\" \"regions\" \"<pokemon>\" \"pokemon\" \"<data>\" \"data\" \"back\" \"help\" \"quit\"")
-        sleep(1)
+        sleep(0.5)
     
     def displayregions(self):
         """
         Displays the regions available.
         """
         print("The regions this Pokedex support are:")
-        sleep(1)
-        print(", ".join(self.regionsdata.keys()))
-        sleep(1)
+        sleep(0.5)
+        print(", ".join(self.availableregions.keys()))
+        sleep(0.5)
     
     def displaypokemon(self, region:str):
         """
         Displays the pokemon available.
         """
-        print(f"The Pokemon currently in this region are:")
-        sleep(1)
-        print(", ".join(self.regionsdata[region].keys()))
-        sleep(1)
+        print(f"The Pokemon currently in the {region.title()} region are:")
+        sleep(0.5)
+        print(", ".join(self.accessregion(region).keys()))
+        sleep(0.5)
     
     def displaydata(self):
         """
         Displays the data available.
         """
         print(f"The current data available for {self.currentpokemon} is:")
-        sleep(1)
-        print(", ".join(self.pokemondata.keys()))
-        sleep(1)
+        sleep(0.5)
+        print(", ".join(self.accesspokemon(self.currentregion, self.currentpokemon).keys()))
+        sleep(0.5)
     
     def enterregion(self, userinput):
         """
         Executed when the user enters the region level of the program.
         """
         self.regiondir(userinput)
+        region = self.accessregion(userinput)
         print(f"Now entering the {userinput.title()} region!")
-        sleep(1)
+        sleep(0.5)
         print(f"The Pokemon currently in this region are:")
-        sleep(1)
-        print(", ".join(self.regionsdata[userinput].keys()))
-        sleep(1)
+        sleep(0.5)
+        print(", ".join(region.keys()))
+        sleep(0.5)
         print("Which Pokemon would you like to know more about?")
     
     def enterpokemondata(self, userinput):
         """
         Executed when the user enters the pokemondata level of the program.
         """
-        self.pokemondir(self.currentregion, userinput)
-        self.pokemondata = self.accesspokemondata(self.currentregion, self.currentpokemon)
+        self.pokemondir(userinput)
+        pokemon = self.accesspokemon(self.currentregion, userinput)
         print(f"Getting data for {userinput}...")
-        sleep(2)
+        sleep(0.5)
         print(f"The current data available for {self.currentpokemon} is:")
-        print(", ".join(self.pokemondata.keys()))
-        sleep(1)
+        sleep(0.5)
+        print(", ".join(pokemon.keys()))
+        sleep(0.5)
         print(f"What would you like to know about {self.currentpokemon}?")
     
-    def rundex(self):
+    def runPokedex(self):
         """
         runs the Pokedex
         """
@@ -189,7 +162,7 @@ class Pokedex:
             
             if userinput == "back":
                 print("That command cannot be executed at this time!")
-                sleep(1)
+                sleep(0.5)
             
             elif userinput == "quit":
                 exit()
@@ -202,13 +175,13 @@ class Pokedex:
             
             elif userinput == "pokemon":
                 print("Please enter a region first!")
-                sleep(1)
+                sleep(0.5)
             
             elif userinput == "data":
                 print("Please enter a region first!")
-                sleep(1)
+                sleep(0.5)
             
-            elif userinput in self.regionsdata:
+            elif userinput in self.availableregions:
                 self.enterregion(userinput)
 
 
@@ -234,9 +207,9 @@ class Pokedex:
                     
                     elif userinput == "data":
                         print("Please select a Pokemon first!")
-                        sleep(1)
+                        sleep(0.5)
                     
-                    elif self.currentregion and userinput in self.regionsdata[self.currentregion]:
+                    elif self.currentregion and userinput in self.availableregions[self.currentregion]:
                         self.enterpokemondata(userinput)
 
 
@@ -263,46 +236,49 @@ class Pokedex:
                             elif userinput == "data":
                                 self.displaydata()
                             
-                            elif userinput == "name" and self.currentregion and self.currentpokemon and userinput in self.pokemondata:
+                            elif userinput == "name" and userinput in self.accesspokemon(self.currentregion, self.currentpokemon):
                                 print("Fetching name...")
-                                sleep(1)
-                                print(f"{self.currentpokemon}'s name is {self.accessname(self.currentregion, self.currentpokemon)}")
-                                sleep(1)
+                                sleep(0.5)
+                                print(f"{self.currentpokemon}'s name is {self.accessdata(self.currentregion, self.currentpokemon, userinput)}")
+                                sleep(0.5)
+                                print(f"What else would you like to know about {self.currentpokemon}?")
                             
-                            elif userinput == "type" and self.currentregion and self.currentpokemon and userinput in self.pokemondata:
+                            elif userinput == "type" and userinput in self.accesspokemon(self.currentregion, self.currentpokemon):
                                 print("Fetching type...")
-                                sleep(1)
-                                print(f"{self.currentpokemon}'s type is {self.accesstype(self.currentregion, self.currentpokemon)}")
-                                sleep(1)
+                                sleep(0.5)
+                                print(f"{self.currentpokemon}'s type is {self.accessdata(self.currentregion, self.currentpokemon, userinput)}")
+                                sleep(0.5)
+                                print(f"What else would you like to know about {self.currentpokemon}?")
                             
-                            elif userinput == "weakness" and self.currentregion and self.currentpokemon and userinput in self.pokemondata:
+                            elif userinput == "weakness" and userinput in self.accesspokemon(self.currentregion, self.currentpokemon):
                                 print("Fetching weakness...")
-                                sleep(1)
-                                print(f"{self.currentpokemon}'s weakness is {self.accessweakness(self.currentregion, self.currentpokemon)}")
-                                sleep(1)
+                                sleep(0.5)
+                                print(f"{self.currentpokemon}'s weakness is {self.accessdata(self.currentregion, self.currentpokemon, userinput)}")
+                                sleep(0.5)
+                                print(f"What else would you like to know about {self.currentpokemon}?")
                             
-                            elif userinput == "evolves" and self.currentregion and self.currentpokemon and userinput in self.pokemondata:
+                            elif userinput == "evolves" and userinput in self.accesspokemon(self.currentregion, self.currentpokemon):
                                 print("Fetching evolution level...")
-                                sleep(1)
-                                print(f"{self.currentpokemon} evolves at level {self.accessevolves(self.currentregion, self.currentpokemon)}")
-                                sleep(1)
+                                sleep(0.5)
+                                print(f"{self.currentpokemon} evolves at level {self.accessdata(self.currentregion, self.currentpokemon, userinput)}")
+                                sleep(0.5)
+                                print(f"What else would you like to know about {self.currentpokemon}?")
                             
-                            elif userinput == "description" and self.currentregion and self.currentpokemon and userinput in self.pokemondata:
+                            elif userinput == "description" and userinput in self.accesspokemon(self.currentregion, self.currentpokemon):
                                 print("Fetching description...")
-                                sleep(1)
-                                print(self.accessdescription(self.currentregion, self.currentpokemon))
-                                sleep(1)
+                                sleep(0.5)
+                                print(self.accessdata(self.currentregion, self.currentpokemon, userinput))
+                                sleep(0.5)
+                                print(f"What else would you like to know about {self.currentpokemon}?")
 
 
                             else:
                                 print("The Pokedex does not contain that data!")
-                            
-                            print(f"What would you like to know about {self.currentpokemon}?")
 
 
                     else:
                         print("That Pokemon is not in this Pokedex/region!")
-                        sleep(1)
+                        sleep(0.5)
 
                     print("Which Pokemon would you like to know more about?")
 
