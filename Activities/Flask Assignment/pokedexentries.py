@@ -3,140 +3,233 @@
 """
 DEXENTRIES are of the form:
 
-pokemon name (lower): {
-    "name": "pokemon name",
-    "type": "pokemon type(s)",
-    "weakness": "pokemon weakness(es)",
-    "region": "pokemon region",
-    "description": "pokemon pokedex description/entry",
+region: {
+    pokemon name: {
+        "name": "Name",
+        "type": "Type",
+        "weakness": "Weakness(s)",
+        "evolves" : lvl the pokemon evolves at (int)
+        "description": "Pokedex description of Pokemon"
     }
+}
 """
 
 DEXENTRIES = {
-    "bulbasaur": {
-        "name": "bulbasaur",
-        "type": "grass/poison",
-        "weakness": "fire, psychic, flying, ice",
-        "region": "kanto",
-        "description": "A strange seed was planted on its back at birth. The plant sprouts and grows with this Pokémon."
+    "kanto": {
+        "bulbasaur": {
+            "name": "Bulbasaur",
+            "type": "grass/poison",
+            "weakness": "fire/psychic/flying/ice",
+            "evolves": 16,
+            "description": "A strange seed was planted on its back at birth. The plant sprouts and grows with this Pokémon."
+        },
+        "charmander": {
+            "name": "Charmander",
+            "type": "fire",
+            "weakness": "water/rock/ground",
+            "evolves": 16,
+            "description": "Obviously prefers hot places. When it rains, steam is said to spout from the tip of its tail."
+        },
+        "squirtle": {
+            "name": "Squirtle",
+            "type": "water",
+            "weakness": "electric/grass",
+            "evolves": 16,
+            "description": "After birth, its back swells and hardens into a shell. It powerfully sprays foam from its mouth."
+        }
     },
-    "charmander": {
-        "name": "charmander",
-        "type": "fire",
-        "weakness": "water, ground, rock",
-        "region": "kanto",
-        "description": "Obviously prefers hot places. When it rains, steam is said to spout from the tip of its tail."
+    
+    "johto": {
+        "chikorita": {
+            "name": "Chikorita",
+            "type": "grass",
+            "weakness": "fire/ice/poison/flying/bug",
+            "evolves": 16,
+            "description": "A sweet aroma gently wafts from the leaf on its head. It is docile and loves to soak up the sun's rays."
+        },
+        "cyndaquil": {
+            "name": "Cyndaquil",
+            "type": "fire",
+            "weakness": "water/rock/ground",
+            "evolves": 14,
+            "description": "It usually stays hunched over. If it is angry or surprised, it shoots flames out of its back."
+        },
+        "totodile": {
+            "name": "Totodile",
+            "type": "water",
+            "weakness": "electric/grass",
+            "evolves": 18,
+            "description": "It is small but rough and tough. It won't hesitate to take a bite out of anything that moves."
+        }
     },
-    "cyndaquil": {
-        "name": "cyndaquil",
-        "type": "fire",
-        "weakness": "water, ground, rock",
-        "region": "johto",
-        "description": "It usually stays hunched over. If it is angry or surprised, it shoots flames out of its back."
+    
+    "hoenn": {
+        "treecko": {
+            "name": "Treecko",
+            "type": "grass",
+            "weakness": "fire/ice/poison/flying/bug",
+            "evolves": 16,
+            "description": "It quickly scales even vertical walls. It senses humidity with its tail to predict the next day's weather."
+        },
+        "torchic": {
+            "name": "Torchic",
+            "type": "fire",
+            "weakness": "water/rock/ground",
+            "evolves": 16,
+            "description": "Inside its body is a place where it keeps its flame. Give it a hug—it will be glowing with warmth."
+        },
+        "mudkip": {
+            "name": "Mudkip",
+            "type": "water",
+            "weakness": "electric/grass",
+            "evolves": 16,
+            "description": "To alert it, the fin on its head senses the flow of water. It has the strength to hurl boulders."
+        }
     },
-    "totodile": {
-        "name": "totodile",
-        "type": "water",
-        "weakness": "electric, grass",
-        "region": "johto",
-        "description": "It has the habit of biting anything with its developed jaws. Even its trainer needs to be careful."
+    
+    "sinnoh": {
+        "turtwig": {
+            "name": "Turtwig",
+            "type": "grass",
+            "weakness": "fire/ice/poison/flying/bug",
+            "evolves": 18,
+            "description": "It undertakes photosynthesis with its body, making oxygen. The leaf on its head wilts if it is thirsty."
+        },
+        "chimchar": {
+            "name": "Chimchar",
+            "type": "fire",
+            "weakness": "water/rock/ground",
+            "evolves": 14,
+            "description": "Its fiery rear end is fueled by gas made in its belly. Even rain can’t extinguish the fire."
+        },
+        "piplup": {
+            "name": "Piplup",
+            "type": "water",
+            "weakness": "electric/grass",
+            "evolves": 16,
+            "description": "Because it is very proud, it hates accepting food from people. Its thick down guards it from cold."
+        }
     },
-    "treecko": {
-        "name": "treecko",
-        "type": "grass",
-        "weakness": "fire, ice, poison, flying, bug",
-        "region": "hoenn",
-        "description": "It quickly scales even vertical walls. It senses humidity with its tail to predict the next day’s weather."
+    
+    "unova": {
+        "snivy": {
+            "name": "Snivy",
+            "type": "grass",
+            "weakness": "fire/ice/poison/flying/bug",
+            "evolves": 17,
+            "description": "It is very intelligent and calm. Being exposed to lots of sunlight makes its movements swifter."
+        },
+        "tepig": {
+            "name": "Tepig",
+            "type": "fire",
+            "weakness": "water/rock/ground",
+            "evolves": 17,
+            "description": "It blows fire through its nose. When it catches a cold, the fire blazes weaker than usual."
+        },
+        "oshawott": {
+            "name": "Oshawott",
+            "type": "water",
+            "weakness": "electric/grass",
+            "evolves": 17,
+            "description": "The scalchop on its stomach isn’t just used for battle—it can be used to break open hard berries."
+        }
     },
-    "torchic": {
-        "name": "torchic",
-        "type": "fire",
-        "weakness": "water, ground, rock",
-        "region": "hoenn",
-        "description": "It has a flame sac inside its belly that perpetually burns. It feels warm if it is hugged."
+    
+    "kalos": {
+        "chespin": {
+            "name": "Chespin",
+            "type": "grass",
+            "weakness": "fire/ice/poison/flying/bug",
+            "evolves": 16,
+            "description": "It relies on its shell for protection. It stays on guard and keeps a watchful eye on its surroundings."
+        },
+        "fennekin": {
+            "name": "Fennekin",
+            "type": "fire",
+            "weakness": "water/rock/ground",
+            "evolves": 16,
+            "description": "Eating a twig fills it with energy, and its roomy ears give vent to air hotter than 390 degrees Fahrenheit."
+        },
+        "froakie": {
+            "name": "Froakie",
+            "type": "water",
+            "weakness": "electric/grass",
+            "evolves": 16,
+            "description": "It protects its skin by covering itself with tiny bubbles."
+        }
     },
-    "piplup": {
-        "name": "piplup",
-        "type": "water",
-        "weakness": "electric, grass",
-        "region": "sinnoh",
-        "description": "Because it is very proud, it hates accepting food from people. Its thick down guards it from cold."
+    
+    "alola": {
+        "rowlet": {
+            "name": "Rowlet",
+            "type": "grass/flying",
+            "weakness": "fire/ice/flying/poison/rock",
+            "evolves": 17,
+            "description": "Silently it glides, drawing near its target. Before they even notice it, it begins to pelt them with vicious kicks."
+        },
+        "litten": {
+            "name": "Litten",
+            "type": "fire",
+            "weakness": "water/rock/ground",
+            "evolves": 17,
+            "description": "While grooming itself, it builds up fur inside its stomach. It sets the fur alight and spews fiery attacks."
+        },
+        "popplio": {
+            "name": "Popplio",
+            "type": "water",
+            "weakness": "electric/grass",
+            "evolves": 17,
+            "description": "Popplio's swimming speed is known to exceed 25 mph. It takes pride in its acrobatic abilities."
+        }
     },
-    "lucario": {
-        "name": "lucario",
-        "type": "fighting/steel",
-        "weakness": "fire, fighting, ground",
-        "region": "sinnoh",
-        "description": "A well-trained one can sense auras to identify and take in the feelings of creatures over half a mile away."
+    
+    "galar": {
+        "grookey": {
+            "name": "Grookey",
+            "type": "grass",
+            "weakness": "fire/ice/poison/flying/bug",
+            "evolves": 16,
+            "description": "It attacks with rapid beats of its stick. As it strikes with amazing speed, it gets more and more pumped."
+        },
+        "scorbunny": {
+            "name": "Scorbunny",
+            "type": "fire",
+            "weakness": "water/rock/ground",
+            "evolves": 16,
+            "description": "A warm-up of running around gets fire energy coursing through this Pokémon’s body."
+        },
+        "sobble": {
+            "name": "Sobble",
+            "type": "water",
+            "weakness": "electric/grass",
+            "evolves": 16,
+            "description": "When it gets wet, its skin changes color, and this Pokémon becomes invisible as if it were camouflaged."
+        }
     },
-    "snivy": {
-        "name": "snivy",
-        "type": "grass",
-        "weakness": "fire, ice, poison, flying, bug",
-        "region": "unova",
-        "description": "Being exposed to sunlight makes its movements swifter. It uses vines more adeptly than its hands."
+    
+    "paldea": {
+        "sprigatito": {
+            "name": "Sprigatito",
+            "type": "grass",
+            "weakness": "fire/ice/poison/flying/bug",
+            "evolves": 16,
+            "description": "Its fluffy fur is similar in composition to plants. This Pokémon frequently washes its face to keep it from drying out."
+        },
+        "fuecoco": {
+            "name": "Fuecoco",
+            "type": "fire",
+            "weakness": "water/rock/ground",
+            "evolves": 16,
+            "description": "It lies on warm rocks and uses the heat absorbed by its square scales to create fire energy."
+        },
+        "quaxly": {
+            "name": "Quaxly",
+            "type": "water",
+            "weakness": "electric/grass",
+            "evolves": 16,
+            "description": "Its glossy body is always polished, and it dislikes getting dirty."
+        }
     },
-    "zorua": {
-        "name": "zorua",
-        "type": "dark",
-        "weakness": "fighting, bug, fairy",
-        "region": "unova",
-        "description": "It changes into the forms of others to surprise them. Apparently, it often transforms into a silent child."
-    },
-    "froakie": {
-        "name": "froakie",
-        "type": "water",
-        "weakness": "electric, grass",
-        "region": "kalos",
-        "description": "It secretes flexible bubbles, which reduce the damage it takes when attacked."
-    },
-    "talonflame": {
-        "name": "talonflame",
-        "type": "fire/flying",
-        "weakness": "water, electric, rock",
-        "region": "kalos",
-        "description": "It soars through the sky at speeds over 310 mph, using its sharp claws to attack prey."
-    },
-    "rowlet": {
-        "name": "rowlet",
-        "type": "grass/flying",
-        "weakness": "fire, flying, poison, rock",
-        "region": "alola",
-        "description": "It uses photosynthesis to store up energy during the day while becoming active at night."
-    },
-    "mimikyu": {
-        "name": "mimikyu",
-        "type": "ghost/fairy",
-        "weakness": "ghost, steel",
-        "region": "alola",
-        "description": "Its actual appearance is unknown. A scholar who saw what was under its rag was overwhelmed by terror and died."
-    },
-    "scorbunny": {
-        "name": "scorbunny",
-        "type": "fire",
-        "weakness": "water, ground, rock",
-        "region": "galar",
-        "description": "It has special pads on the backs of its feet, and one kick from a Scorbunny can start a fire."
-    },
-    "dragapult": {
-        "name": "dragapult",
-        "type": "dragon/ghost",
-        "weakness": "ice, dragon, fairy, ghost, dark",
-        "region": "galar",
-        "description": "Dragapult habitually launches Dreepy at Mach speeds from the crests on its head."
-    },
-    "sprigatito": {
-        "name": "sprigatito",
-        "type": "grass",
-        "weakness": "fire, ice, poison, flying, bug",
-        "region": "paldea",
-        "description": "The fluffy fur absorbs water, allowing it to stay hydrated and battle in dry areas."
-    },
-    "ceruledge": {
-        "name": "ceruledge",
-        "type": "fire/ghost",
-        "weakness": "water, ground, rock, ghost, dark",
-        "region": "paldea",
-        "description": "Its fiery blades leave lingering wounds that burn for eternity. It fights in close combat without mercy."
-    }
+    
+    
 }
