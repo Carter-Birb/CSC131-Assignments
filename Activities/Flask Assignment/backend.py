@@ -43,7 +43,7 @@ def getpokemon(region:str, pokemon:str):
     return jsonify(DEXENTRIES[region][pokemon])
 
 
-
+# This creates an endpoint directed to a pokemon's name
 @app.route("/<region>/<pokemon>/name", methods=["GET"])
 def getname(region, pokemon):
     """
@@ -52,7 +52,7 @@ def getname(region, pokemon):
     return jsonify(DEXENTRIES[region][pokemon]['name'])
 
 
-
+# This creates an endpoint directed to a pokemon's type
 @app.route("/<region>/<pokemon>/type", methods=["GET"])
 def gettype(region, pokemon):
     """
@@ -61,7 +61,7 @@ def gettype(region, pokemon):
     return jsonify(DEXENTRIES[region][pokemon]['type'])
 
 
-
+# This creates an endpoint directed to a pokemon's weakness
 @app.route("/<region>/<pokemon>/weakness", methods=["GET"])
 def getweakness(region, pokemon):
     """
@@ -70,7 +70,7 @@ def getweakness(region, pokemon):
     return jsonify(DEXENTRIES[region][pokemon]['weakness'])
 
 
-
+# This creates an endpoint directed to a pokemon's evolution level
 @app.route("/<region>/<pokemon>/evolves", methods=["GET"])
 def getevolves(region, pokemon):
     """
@@ -79,15 +79,13 @@ def getevolves(region, pokemon):
     return jsonify(DEXENTRIES[region][pokemon]['evolves'])
 
 
-
+# This creates and endpoint directed to a pokemon's description
 @app.route("/<region>/<pokemon>/description", methods=["GET"])
 def getdescription(region, pokemon):
     """
     returns the description of a pokemon
     """
     return jsonify(DEXENTRIES[region][pokemon]['description'])
-
-
 
 
 
