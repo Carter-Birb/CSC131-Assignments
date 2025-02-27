@@ -1,0 +1,3 @@
+[submodule "Activities/simple-pokedex"]
+	path = Activities/simple-pokedex
+	url = https://github.com/Carter-Birb/simple-pokedex
